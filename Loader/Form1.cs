@@ -16,23 +16,27 @@ namespace Loader
         {
             InitializeComponent();
 
+            comboBox1.Items.Add("PPHUD");
+            comboBox1.Items.Add("Crytallity.win");
+            comboBox1.SelectedIndex = 0;
+
             var SkinManager = MaterialSkin.MaterialSkinManager.Instance;
 
             SkinManager.AddFormToManage(this);
             SkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT;
-            SkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Pink500, MaterialSkin.Primary.Pink600, MaterialSkin.Primary.Pink500, MaterialSkin.Accent.Purple400, MaterialSkin.TextShade.WHITE);
+            SkinManager.ColorScheme = new MaterialSkin.ColorScheme(MaterialSkin.Primary.Red500, MaterialSkin.Primary.Red600, MaterialSkin.Primary.Red500, MaterialSkin.Accent.Purple400, MaterialSkin.TextShade.WHITE);
         }
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
-            Process.Start("https://vk.com");
+            Process.Start("https://vk.com/nixer1337");
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
             this.Hide();
 
-            var dll = new WebClient().DownloadData("https://github.com");
+            var dll = new WebClient().DownloadData(comboBox1.SelectedIndex == 0 ? "https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/pphud.dll?raw=true" : "https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/Crytallity.win.dll?raw=true");
 
             while (Process.GetProcessesByName("csgo").Length == 0)
             {
