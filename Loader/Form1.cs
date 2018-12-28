@@ -44,6 +44,9 @@ namespace Loader
 
             comboBox1.Items.Add("PPHUD");
             comboBox1.Items.Add("Crytallity.win");
+            comboBox1.Items.Add("Acedia");
+            comboBox1.Items.Add("LuckyCharms");
+
             comboBox1.SelectedIndex = 0;
 
             var SkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -62,7 +65,23 @@ namespace Loader
         {
             this.Hide();
 
-            var dll = new WebClient().DownloadData(comboBox1.SelectedIndex == 0 ? "https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/pphud.dll?raw=true" : "https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/Crytallity.win.dll?raw=true");
+            byte[] dll = null;
+
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/pphud.dll?raw=true");
+                    break;
+                case 1:
+                    dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/Crytallity.win.dll?raw=true");
+                    break;
+                case 2:
+                    dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/acedia.dll?raw=true");
+                    break;
+                case 3:
+                    dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/luckycharms.dll?raw=true");
+                    break;
+            }
 
             while (Process.GetProcessesByName("csgo").Length == 0)
             {
