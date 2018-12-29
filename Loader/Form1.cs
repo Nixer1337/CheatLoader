@@ -15,32 +15,18 @@ namespace Loader
         [DllImport("InjectLib.dll", CallingConvention = CallingConvention.Cdecl)]
         private extern static void Inject(byte[] buf);
 
-        private string GetUrlData(string url)
-        {
-            HttpWebRequest proxy_request = (HttpWebRequest)WebRequest.Create(url);
-            proxy_request.Method = "GET";
-            proxy_request.ContentType = "application/x-www-form-urlencoded";
-            proxy_request.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.89 Safari/532.5";
-            proxy_request.KeepAlive = true;
-            HttpWebResponse resp = proxy_request.GetResponse() as HttpWebResponse;
-            string html = "";
-            using (StreamReader sr = new StreamReader(resp.GetResponseStream(), Encoding.GetEncoding(1251)))
-                html = sr.ReadToEnd();
-            html = html.Trim();
-
-            return html;
-        }
-
         public Form1()
         {
-            InitializeComponent();
+            string version = Encoding.ASCII.GetString(new WebClient().DownloadData("https://raw.githubusercontent.com/Nixer1337/CheatLoader/master/version"));
 
-            if (GetUrlData("https://raw.githubusercontent.com/Nixer1337/CheatLoader/master/version") != "0.02")
+            if (version != "0.02")
             {
-                MessageBox.Show("Лоадер устарел!");
+                MessageBox.Show("Лоадер устарел");
                 Process.Start("https://yougame.biz/threads/60719/");
                 Process.GetCurrentProcess().Kill();
             }
+
+            InitializeComponent();
 
             comboBox1.Items.Add("PPHUD");
             comboBox1.Items.Add("Crytallity.win");
