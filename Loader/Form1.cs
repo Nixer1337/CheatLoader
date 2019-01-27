@@ -19,7 +19,7 @@ namespace Loader
         {
             string version = Encoding.ASCII.GetString(new WebClient().DownloadData("https://raw.githubusercontent.com/Nixer1337/CheatLoader/master/version"));
 
-            if (version != "0.02")
+            if (version != "0.04")
             {
                 MessageBox.Show("Лоадер устарел");
                 Process.Start("https://yougame.biz/threads/60719/");
@@ -32,6 +32,7 @@ namespace Loader
             comboBox1.Items.Add("Crytallity.win");
             comboBox1.Items.Add("Acedia");
             comboBox1.Items.Add("LuckyCharms");
+            comboBox1.Items.Add("1tapgang.cc");
 
             comboBox1.SelectedIndex = 0;
 
@@ -44,7 +45,7 @@ namespace Loader
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {
-            Process.Start("https://vk.com/nixer1337");
+            Process.Start("https://vk.com/nixware/");
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -66,6 +67,9 @@ namespace Loader
                     break;
                 case 3:
                     dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/luckycharms.dll?raw=true");
+                    break; 
+                case 4:
+                    dll = new WebClient().DownloadData("https://github.com/Nixer1337/CheatLoader/blob/master/Cheats/onetapgang.dll?raw=true");
                     break;
             }
 
